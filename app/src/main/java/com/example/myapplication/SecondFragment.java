@@ -18,7 +18,7 @@ public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
     private VideoView mVideoView;
-    private final String videoUrl="http://techslides.com/demos/sample-videos/small.mp4";
+    final String videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
 
 
 
@@ -36,9 +36,19 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         mVideoView = (VideoView) view.findViewById(R.id.videoView);
+
+        // Uri object to refer the
+        // resource from the videoUrl
         Uri uri = Uri.parse(videoUrl);
+
+        // sets the resource from the
+        // videoUrl to the videoView
         mVideoView.setVideoURI(uri);
+
+        // creating object of
+        // media controller class
         MediaController mediaController = new MediaController(view.getContext());
 
         // sets the anchor view
