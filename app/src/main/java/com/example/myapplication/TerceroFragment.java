@@ -34,6 +34,8 @@ public class TerceroFragment extends Fragment {
     File audiofile = null;
     Button boton;
     boolean estadoG;
+    MediaPlayer player;
+
 
     @Override
     public View onCreateView(
@@ -52,6 +54,7 @@ public class TerceroFragment extends Fragment {
         boton = (Button) view.findViewById(R.id.grabar);
 
         boton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
@@ -64,6 +67,13 @@ public class TerceroFragment extends Fragment {
                     estadoG=false;
                 }
 
+            }
+        });
+
+        binding.reproducir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reproducir(view);
             }
         });
 
@@ -115,11 +125,13 @@ public class TerceroFragment extends Fragment {
 
     public void reproducir(View v)
     {
-        MediaPlayer player = new MediaPlayer();
+        player = new MediaPlayer();
         //player.setOnCompletionListener(this);
         try {
+
             player.setDataSource(audiofile.getAbsolutePath());
             player.prepare();
+            player.start();
         } catch (IOException e) {
         }
     }
